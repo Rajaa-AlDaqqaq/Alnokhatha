@@ -2,7 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 //Morgon logs //npm install morgan when use it
-
+const HarborRouter = require('./routes/Harbor')
 const PORT = process.env.PORT || 3001
 
 const db = require('./db')
@@ -13,7 +13,7 @@ app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
+app.use('/harbor', HarborRouter)
 app.use('/', (req, res) => {
   res.send(`Connected!`)
 })
