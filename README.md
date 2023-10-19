@@ -10,7 +10,7 @@ This system serves a real problem in the country, which is to help the employees
   
   # Entity Relationship Diagram
 
-![database_er_diagram](https://github.com/Rajaa-AlDaqqaq/Alnokhatha-Frontend/assets/81402701/74a3b468-5980-4d7c-8d2d-033bdb7583a8)
+![database_er_diagram](https://github.com/Rajaa-AlDaqqaq/Alnokhatha-Backend/assets/81402701/5d4fd437-f060-4917-ad5f-efa3e2939f9e)
 
 
   # WireFrame
