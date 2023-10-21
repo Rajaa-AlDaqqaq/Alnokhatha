@@ -38,3 +38,16 @@ exports.UpdateSlip = async (req, res) => {
     throw error
   }
 }
+
+exports.DeleteSlip = async (req, res) => {
+  try {
+    await boatSlip.deleteOne({ _id: req.params.boatSlip_id })
+    res.send({
+      msg: 'SLip Deleted',
+      payload: req.params.boatSlip_id,
+      status: 'OK'
+    })
+  } catch (error) {
+    throw error
+  }
+}
