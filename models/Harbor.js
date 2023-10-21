@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 const mongoose = require('mongoose')
-const harborSchema = new Schema({
+const harborSchema = mongoose.Schema({
   name: String,
   location: String,
   Boat_Slips: [
@@ -16,5 +16,5 @@ const harborSchema = new Schema({
     }
   ]
 })
-
-module.exports = harborSchema
+const Harbor = mongoose.model('Harbor', harborSchema)
+module.exports = { Harbor }
