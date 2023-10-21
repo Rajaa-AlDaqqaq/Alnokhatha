@@ -1,4 +1,4 @@
-const { Harbor } = require('../models')
+const { Harbor } = require('../models/Harbor')
 
 const GetHarbors = async (req, res) => {
   try {
