@@ -107,28 +107,6 @@ const EditProfile = async (req, res) => {
       console.log(err)
     })
 
-  // const userId = req.params.user_id
-  // const {
-  //   name,
-  //   email,
-  //   CPR,
-  //   phoneNumber
-  // } = req.body
-
-  // try {
-  //   console.log(req.params.user_id)
-  //   let updatedUser = await User.findByIdAndUpdate(req.params.user_id, req.body)
-
-  //   res.json(updatedUser)
-  //   // {
-  //   //   name,
-  //   //   email,
-  //   //   CPR,
-  //   //   phoneNumber
-  //   // }
-  // } catch {
-  //   console.log('error')
-  // }
 }
 
 module.exports = {
