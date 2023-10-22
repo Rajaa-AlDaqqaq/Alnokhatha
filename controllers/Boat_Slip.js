@@ -24,6 +24,7 @@ exports.slip_create_post = (req, res) => {
     })
 }
 
+//UPDATE sLIP -
 exports.UpdateSlip = async (req, res) => {
   try {
     const boatslip = await boatSlip.findByIdAndUpdate(
@@ -39,6 +40,7 @@ exports.UpdateSlip = async (req, res) => {
   }
 }
 
+//DELETE SLEP
 exports.DeleteSlip = async (req, res) => {
   try {
     await boatSlip.deleteOne({ _id: req.params.boatSlip_id })

@@ -7,7 +7,7 @@ const boatSlipSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Harbor'
     },
-    Abailable: Boolean
+    Available: Boolean
   },
   {
     timestamps: true
