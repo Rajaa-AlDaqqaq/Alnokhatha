@@ -14,7 +14,7 @@ exports.boat_create_post = (req, res) => {
     })
 }
 
-//GET ALL boats
+//GET view all boats
 exports.boat_view_get = async (req, res) => {
   try {
     const boats = await Boat.find({})
