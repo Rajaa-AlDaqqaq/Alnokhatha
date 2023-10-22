@@ -1,10 +1,10 @@
-const { User } = require('../models')
+const User = require('../models/User')
 const middleware = require('../middleware')
 
 const Register = async (req, res) => {
   try {
     console.log(req.body)
-    const { email, password, name, CPR, type, pic, phoneNumber } = req.body
+    const { email, password, name, CPR, type, phoneNumber } = req.body
     let passwordDigest = await middleware.hashPassword(password)
     let existingUser = await User.findOne({ email })
     if (existingUser) {
@@ -18,7 +18,7 @@ const Register = async (req, res) => {
         passwordDigest,
         CPR,
         type,
-        pic,
+        pic: req.file.path,
         phoneNumber
       })
       res.send(user)
@@ -61,17 +61,24 @@ const UpdatePassword = async (req, res) => {
     )
     if (matched) {
       let passwordDigest = await middleware.hashPassword(newPassword)
-      user = await User.findByIdAndUpdate(req.params.user_id, { passwordDigest })
+      user = await User.findByIdAndUpdate(req.params.user_id, {
+        passwordDigest
+      })
       let payload = {
         id: user.id,
         email: user.email
       }
       return res.send({ status: 'Password Updated!', user: payload })
     }
-    res.status(401).send({ status: 'Error', msg: 'Old Password did not match!' })
+    res
+      .status(401)
+      .send({ status: 'Error', msg: 'Old Password did not match!' })
   } catch (error) {
     console.log(error)
-    res.status(401).send({ status: 'Error', msg: 'An error has occurred updating password!' })
+    res.status(401).send({
+      status: 'Error',
+      msg: 'An error has occurred updating password!'
+    })
   }
 }
 
@@ -80,9 +87,21 @@ const CheckSession = async (req, res) => {
   res.send(payload)
 }
 
+const showprofile = async (req, res) => {
+  User.findById(req.params.user_id)
+
+    .then((user) => {
+      res.json(user)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 module.exports = {
   Register,
   Login,
+  showprofile,
   UpdatePassword,
   CheckSession
 }
