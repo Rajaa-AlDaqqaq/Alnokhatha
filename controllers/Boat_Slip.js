@@ -1,4 +1,5 @@
 const { boatSlip } = require('../models/Boat_Slip')
+
 const GetSlips = async (req, res) => {
   try {
     const slips = await boatSlip.find({})
