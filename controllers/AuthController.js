@@ -1,7 +1,7 @@
 const { User } = require('../models')
 const middleware = require('../middleware')
 
-const AdminRegister = async (req, res) => {
+const Register = async (req, res) => {
   try {
     console.log(req.body)
     const { email, password, name, CPR, type, pic, phoneNumber } = req.body
@@ -59,27 +59,19 @@ const UpdatePassword = async (req, res) => {
       user.passwordDigest,
       oldPassword
     )
-
     if (matched) {
       let passwordDigest = await middleware.hashPassword(newPassword)
-      user = await User.findByIdAndUpdate(req.params.user_id, {
-        passwordDigest
-      })
+      user = await User.findByIdAndUpdate(req.params.user_id, { passwordDigest })
       let payload = {
         id: user.id,
         email: user.email
       }
       return res.send({ status: 'Password Updated!', user: payload })
     }
-    res
-      .status(401)
-      .send({ status: 'Error', msg: 'Old Password did not match!' })
+    res.status(401).send({ status: 'Error', msg: 'Old Password did not match!' })
   } catch (error) {
     console.log(error)
-    res.status(401).send({
-      status: 'Error',
-      msg: 'An error has occurred updating password!'
-    })
+    res.status(401).send({ status: 'Error', msg: 'An error has occurred updating password!' })
   }
 }
 
@@ -89,7 +81,7 @@ const CheckSession = async (req, res) => {
 }
 
 module.exports = {
-  AdminRegister,
+  Register,
   Login,
   UpdatePassword,
   CheckSession

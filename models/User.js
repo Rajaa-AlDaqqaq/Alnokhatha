@@ -4,7 +4,6 @@ const userSchema = new Schema(
   {
     CPR: { type: Number, required: true },
     name: { type: String, required: true },
-    type: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
     email: { type: String, required: true },
     passwordDigest: { type: String, required: true },
