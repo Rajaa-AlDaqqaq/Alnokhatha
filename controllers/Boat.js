@@ -36,6 +36,7 @@ exports.boat_update_put = async (req, res) => {
   }
 }
 
+//delete boat
 exports.boat_delete = async (req, res) => {
   try {
     await Boat.deleteOne({ _id: req.params.boat_id })
