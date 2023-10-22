@@ -23,6 +23,12 @@ router.put(
 )
 
 router.get('/showprofile/:user_id', controller.showprofile)
+router.put(
+  '/EditProfile/:user_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.EditProfile
+)
 
 router.get(
   '/session',

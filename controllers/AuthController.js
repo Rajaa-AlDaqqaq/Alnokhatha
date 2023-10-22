@@ -4,7 +4,7 @@ const middleware = require('../middleware')
 const Register = async (req, res) => {
   try {
     console.log(req.body)
-    const { email, password, name, CPR, type, phoneNumber } = req.body
+    const { email, password, name, CPR, phoneNumber } = req.body
     let passwordDigest = await middleware.hashPassword(password)
     let existingUser = await User.findOne({ email })
     if (existingUser) {
@@ -17,7 +17,6 @@ const Register = async (req, res) => {
         email,
         passwordDigest,
         CPR,
-        type,
         pic: req.file.path,
         phoneNumber
       })
@@ -98,10 +97,45 @@ const showprofile = async (req, res) => {
     })
 }
 
+const EditProfile = async (req, res) => {
+  User.findByIdAndUpdate(req.params.user_id, req.body, { new: true })
+
+    .then((user) => {
+      res.json(user)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+  // const userId = req.params.user_id
+  // const {
+  //   name,
+  //   email,
+  //   CPR,
+  //   phoneNumber
+  // } = req.body
+
+  // try {
+  //   console.log(req.params.user_id)
+  //   let updatedUser = await User.findByIdAndUpdate(req.params.user_id, req.body)
+
+  //   res.json(updatedUser)
+  //   // {
+  //   //   name,
+  //   //   email,
+  //   //   CPR,
+  //   //   phoneNumber
+  //   // }
+  // } catch {
+  //   console.log('error')
+  // }
+}
+
 module.exports = {
   Register,
   Login,
   showprofile,
+  EditProfile,
   UpdatePassword,
   CheckSession
 }
