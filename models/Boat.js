@@ -1,23 +1,13 @@
+const { Schema } = require('mongoose')
 const mongoose = require('mongoose')
 
 const boatSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  number: {
-    type: Number,
-    required: true
-  },
+  name: String,
+  number: Number,
   size: Number,
-  license_type: {
-    type: String,
-    required: true
-  },
-  license_expiry_date: {
-    type: Date
-  },
-  picture: { type: String }
+  license_type: String,
+  license_expiry_date: Date,
+  picture: String
 })
 
 const Boat = mongoose.model('Boat', boatSchema)

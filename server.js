@@ -7,6 +7,7 @@ require('dotenv').config()
 //Morgon logs //npm install morgan when use it
 const HarborRouter = require('./routes/Harbor')
 const SlipRouter = require('./routes/Boat_Slip')
+const BoatRouter = require('./routes/Boat')
 const PORT = process.env.PORT || 3001
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/harbor', HarborRouter)
 app.use('/boatSlip', SlipRouter)
+app.use('/boat', BoatRouter)
 app.use('/', (req, res) => {
   res.send(`Connected!`)
 })
