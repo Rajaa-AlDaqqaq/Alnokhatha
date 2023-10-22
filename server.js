@@ -18,6 +18,9 @@ app.use('/boatSlip', SlipRouter)
 app.use('/', (req, res) => {
   res.send(`Connected!`)
 })
+app.listen(PORT, () => {
+  console.log(`This App is Running on port ${PORT}`)
+})
 
 mongoose
   .connect(process.env.MONGODB_URI)
