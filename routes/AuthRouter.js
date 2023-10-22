@@ -21,6 +21,9 @@ router.put(
   middleware.verifyToken,
   controller.UpdatePassword
 )
+
+router.get('/showprofile/:user_id', controller.showprofile)
+
 router.get(
   '/session',
   middleware.stripToken,

@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const User = require('../models/User')
 const middleware = require('../middleware')
 
 const Register = async (req, res) => {
@@ -75,12 +75,10 @@ const UpdatePassword = async (req, res) => {
       .send({ status: 'Error', msg: 'Old Password did not match!' })
   } catch (error) {
     console.log(error)
-    res
-      .status(401)
-      .send({
-        status: 'Error',
-        msg: 'An error has occurred updating password!'
-      })
+    res.status(401).send({
+      status: 'Error',
+      msg: 'An error has occurred updating password!'
+    })
   }
 }
 
@@ -89,9 +87,21 @@ const CheckSession = async (req, res) => {
   res.send(payload)
 }
 
+const showprofile = async (req, res) => {
+  User.findById(req.params.user_id)
+
+    .then((user) => {
+      res.json(user)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 module.exports = {
   Register,
   Login,
+  showprofile,
   UpdatePassword,
   CheckSession
 }
