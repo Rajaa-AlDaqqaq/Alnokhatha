@@ -3,7 +3,7 @@ const { Harbor } = require('../models/Harbor')
 //GET ALL SLIPS
 exports.GetSlips = async (req, res) => {
   try {
-    const slips = await boatSlip.find({})
+    const slips = await boatSlip.find({}).populate('Harbor')
     res.send(slips)
   } catch (error) {
     throw error
@@ -49,6 +49,17 @@ exports.DeleteSlip = async (req, res) => {
       payload: req.params.boatSlip_id,
       status: 'OK'
     })
+  } catch (error) {
+    throw error
+  }
+}
+
+exports.GetSlip = async (req, res) => {
+  try {
+    const slip = await boatSlip
+      .findById(req.params.boatSlip_id)
+      .populate('Harbor')
+    res.send(slip)
   } catch (error) {
     throw error
   }
