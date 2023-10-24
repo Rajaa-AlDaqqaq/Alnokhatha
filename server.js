@@ -33,11 +33,11 @@ app.listen(PORT, () => {
   console.log(`This App is Running on port ${PORT}`)
 })
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('Successfully connected to MongoDB . . .')
-  })
-  .catch((e) => {
-    console.error('Connection error', e.message)
-  })
+// mongoose
+//   .connect(process.env.MONGODB_URI)
+//   .then(() => {
+//     console.log('Successfully connected to MongoDB . . .')
+//   })
+//   .catch((e) => {
+//     console.error('Connection error', e.message)
+//   })

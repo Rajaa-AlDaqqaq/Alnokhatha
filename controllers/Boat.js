@@ -24,6 +24,17 @@ exports.boat_view_get = async (req, res) => {
   }
 }
 
+//detail
+exports.boat_detail_put = async (req, res) => {
+  try {
+    const boat = await Boat.findById(req.params.boat_id)
+    res.send(boat)
+  } catch (error) {
+    throw error
+  }
+}
+
+
 //UPDATE boat
 exports.boat_update_put = async (req, res) => {
   try {
