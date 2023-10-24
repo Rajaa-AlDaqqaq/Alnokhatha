@@ -9,7 +9,7 @@ const boatSchema = mongoose.Schema(
     license_type: String,
     license_expiry_date: Date,
     picture: String,
-    User: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }
