@@ -14,6 +14,17 @@ exports.boat_create_post = (req, res) => {
     })
 }
 
+//GET view user boats
+exports.boat_viewUserBoats_get = async (req, res) => {
+  try {
+    const userId = req.params.user_id
+    const boats = await Boat.find({ user: userId })
+    res.send(boats)
+  } catch (error) {
+    throw error
+  }
+}
+
 //GET view all boats
 exports.boat_view_get = async (req, res) => {
   try {
