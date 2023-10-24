@@ -1,14 +1,23 @@
 const { Schema } = require('mongoose')
 const mongoose = require('mongoose')
 
-const boatSchema = mongoose.Schema({
-  name: String,
-  number: Number,
-  size: Number,
-  license_type: String,
-  license_expiry_date: Date,
-  picture: String
-})
+const boatSchema = mongoose.Schema(
+  {
+    name: String,
+    number: Number,
+    size: Number,
+    license_type: String,
+    license_expiry_date: Date,
+    picture: String,
+    User: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  },
+  {
+    timestamps: true //means createdAt and updateAt
+  }
+)
 
 const Boat = mongoose.model('Boat', boatSchema)
 
