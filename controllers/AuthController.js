@@ -101,9 +101,17 @@ const showprofile = async (req, res) => {
 const EditProfile = async (req, res) => {
   console.log(req.body)
   console.log(req.file)
-  req.body.pic = req.file.filename
-  User.findByIdAndUpdate(req.params.user_id, req.body, { new: true })
-
+    let requestBody
+  if (req.file) {
+    requestBody = { ...req.body, pic: req.file.path }
+  } else {
+    requestBody = req.body
+  }
+  User.findByIdAndUpdate(
+    req.params.user_id,
+    requestBody,
+    { new: true }
+  )
     .then((user) => {
       res.json(user)
     })
