@@ -26,3 +26,25 @@ exports.EditRequest = async (req, res) => {
     throw error
   }
 }
+
+exports.viewRequest = async (req, res) => {
+  try {
+    const request = await Request.find({})
+    res.send(request)
+  } catch (error) {
+    throw error
+  }
+}
+
+exports.DeleteRequest = async (req, res) => {
+  try {
+    await Request.deleteOne({ _id: req.params.request_id })
+    res.send({
+      msg: 'Request Deleted',
+      payload: req.params.request_id,
+      status: 'OK'
+    })
+  } catch (error) {
+    throw error
+  }
+}
