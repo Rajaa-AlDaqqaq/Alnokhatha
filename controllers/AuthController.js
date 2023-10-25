@@ -50,6 +50,9 @@ const Login = async (req, res) => {
 
 const UpdatePassword = async (req, res) => {
   try {
+    console.log('req.body')
+    console.log(req.body)
+    console.log(req.params.user_id)
     const { oldPassword, newPassword } = req.body
     let user = await User.findById(req.params.user_id)
     let matched = await middleware.comparePassword(

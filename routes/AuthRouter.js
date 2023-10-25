@@ -32,6 +32,13 @@ router.post(
   controller.EditProfile
 )
 
+router.put(
+  '/changepassword/:user_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.UpdatePassword
+)
+
 router.get(
   '/session',
   middleware.stripToken,
