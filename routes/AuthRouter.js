@@ -17,17 +17,26 @@ router.post('/login', controller.Login)
 router.post('/register', upload, controller.Register)
 router.put(
   '/update/:user_id',
+  upload,
   middleware.stripToken,
   middleware.verifyToken,
   controller.UpdatePassword
 )
 
 router.get('/showprofile/:user_id', controller.showprofile)
-router.put(
+router.post(
   '/EditProfile/:user_id',
+  upload,
   middleware.stripToken,
   middleware.verifyToken,
   controller.EditProfile
+)
+
+router.put(
+  '/changepassword/:user_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.UpdatePassword
 )
 
 router.get(

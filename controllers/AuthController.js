@@ -18,7 +18,7 @@ const Register = async (req, res) => {
         email,
         passwordDigest,
         CPR,
-        pic: req.file.path,
+        pic: req.file.filename,
         phoneNumber
       })
       res.send(user)
@@ -37,7 +37,7 @@ const Login = async (req, res) => {
       password
     )
     if (matched) {
-      let payload = {...user._doc}
+      let payload = { ...user._doc }
       let token = middleware.createToken(payload)
       return res.send({ user: payload, token })
     }
@@ -50,6 +50,9 @@ const Login = async (req, res) => {
 
 const UpdatePassword = async (req, res) => {
   try {
+    console.log('req.body')
+    console.log(req.body)
+    console.log(req.params.user_id)
     const { oldPassword, newPassword } = req.body
     let user = await User.findById(req.params.user_id)
     let matched = await middleware.comparePassword(
@@ -96,15 +99,25 @@ const showprofile = async (req, res) => {
 }
 
 const EditProfile = async (req, res) => {
-  User.findByIdAndUpdate(req.params.user_id, req.body, { new: true })
-
+  console.log(req.body)
+  console.log(req.file)
+    let requestBody
+  if (req.file) {
+    requestBody = { ...req.body, pic: req.file.path }
+  } else {
+    requestBody = req.body
+  }
+  User.findByIdAndUpdate(
+    req.params.user_id,
+    requestBody,
+    { new: true }
+  )
     .then((user) => {
       res.json(user)
     })
     .catch((err) => {
       console.log(err)
     })
-
 }
 
 module.exports = {

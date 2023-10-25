@@ -17,6 +17,8 @@ const db = require('./db')
 
 const app = express()
 
+app.use(express.static('public'))
+
 app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
@@ -26,10 +28,16 @@ app.use('/harbor', HarborRouter)
 app.use('/boatSlip', SlipRouter)
 app.use('/auth', AuthRouter)
 app.use('/boat', BoatRouter)
+
+// app.use('/', (req, res) => {
+//   res.send(`Connected!`)
+// })
+
 app.use('/request', RequestRouter)
 app.use('/', (req, res) => {
   res.send(`Connected!`)
 })
+
 app.listen(PORT, () => {
   console.log(`This App is Running on port ${PORT}`)
 })
