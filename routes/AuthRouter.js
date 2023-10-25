@@ -17,14 +17,16 @@ router.post('/login', controller.Login)
 router.post('/register', upload, controller.Register)
 router.put(
   '/update/:user_id',
+  upload,
   middleware.stripToken,
   middleware.verifyToken,
   controller.UpdatePassword
 )
 
 router.get('/showprofile/:user_id', controller.showprofile)
-router.put(
+router.post(
   '/EditProfile/:user_id',
+  upload,
   middleware.stripToken,
   middleware.verifyToken,
   controller.EditProfile
@@ -36,7 +38,5 @@ router.get(
   middleware.verifyToken,
   controller.CheckSession
 )
-
-
 
 module.exports = router

@@ -18,7 +18,7 @@ const Register = async (req, res) => {
         email,
         passwordDigest,
         CPR,
-        pic: req.file.path,
+        pic: req.file.filename,
         phoneNumber
       })
       res.send(user)
@@ -37,7 +37,7 @@ const Login = async (req, res) => {
       password
     )
     if (matched) {
-      let payload = {...user._doc}
+      let payload = { ...user._doc }
       let token = middleware.createToken(payload)
       return res.send({ user: payload, token })
     }
@@ -96,6 +96,9 @@ const showprofile = async (req, res) => {
 }
 
 const EditProfile = async (req, res) => {
+  console.log(req.body)
+  console.log(req.file)
+  req.body.pic = req.file.filename
   User.findByIdAndUpdate(req.params.user_id, req.body, { new: true })
 
     .then((user) => {
@@ -104,7 +107,6 @@ const EditProfile = async (req, res) => {
     .catch((err) => {
       console.log(err)
     })
-
 }
 
 module.exports = {
