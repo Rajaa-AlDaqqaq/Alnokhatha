@@ -8,6 +8,7 @@ require('dotenv').config()
 const HarborRouter = require('./routes/Harbor')
 const SlipRouter = require('./routes/Boat_Slip')
 const BoatRouter = require('./routes/Boat')
+const RequestRouter = require('./routes/Request')
 const PORT = process.env.PORT || 3001
 
 const AuthRouter = require('./routes/AuthRouter')
@@ -25,19 +26,10 @@ app.use('/harbor', HarborRouter)
 app.use('/boatSlip', SlipRouter)
 app.use('/auth', AuthRouter)
 app.use('/boat', BoatRouter)
-
+app.use('/request', RequestRouter)
 app.use('/', (req, res) => {
   res.send(`Connected!`)
 })
 app.listen(PORT, () => {
   console.log(`This App is Running on port ${PORT}`)
 })
-
-// mongoose
-//   .connect(process.env.MONGODB_URI)
-//   .then(() => {
-//     console.log('Successfully connected to MongoDB . . .')
-//   })
-//   .catch((e) => {
-//     console.error('Connection error', e.message)
-//   })

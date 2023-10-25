@@ -1,4 +1,4 @@
 const router = require('express').Router()
 const RequestCtrl = require('../controllers/Request')
-router.post('/add/:boat_id', RequestCtrl.AddRequest)
+router.post('/add', RequestCtrl.AddRequest)
 module.exports = router

@@ -2,7 +2,6 @@ const { Schema } = require('mongoose')
 const mongoose = require('mongoose')
 const requestSchema = mongoose.Schema(
   {
-    Approved: Boolean,
     Boat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Boat'
@@ -21,7 +20,9 @@ const requestSchema = mongoose.Schema(
       ref: 'boatSlip'
     },
     StartDate: Date,
-    ExpiryDate: Date
+    ExpiryDate: Date,
+    price: Number,
+    Approved: Boolean
   },
 
   {

@@ -1,10 +1,11 @@
 const { Request } = require('../models/Request')
 
 exports.AddRequest = (req, res) => {
-  let Request = new Request(req.body)
-  Request.save()
+  let request = new Request(req.body)
+  request
+    .save()
     .then(() => {
-      res.send(Request)
+      res.send(request)
     })
     .catch((err) => {
       console.log(err)
