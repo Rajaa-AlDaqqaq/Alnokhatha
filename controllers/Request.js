@@ -11,3 +11,18 @@ exports.AddRequest = (req, res) => {
       console.log(err)
     })
 }
+
+exports.EditRequest = async (req, res) => {
+  try {
+    const request = await Request.findByIdAndUpdate(
+      req.params.request_id,
+      req.body,
+      {
+        new: true
+      }
+    )
+    res.send(request)
+  } catch (error) {
+    throw error
+  }
+}
