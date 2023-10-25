@@ -20,6 +20,7 @@ exports.GetHarbors = async (req, res) => {
     throw error
   }
 }
+//GET ONE HARBOR
 exports.GetHarbor = async (req, res) => {
   try {
     const harbor = await Harbor.findById(req.params.harbor_id)
@@ -28,7 +29,7 @@ exports.GetHarbor = async (req, res) => {
     throw error
   }
 }
-
+//CREATE HARBOR
 exports.CreateHarbor = async (req, res) => {
   try {
     const harbor = await Harbor.create({ ...req.body })
@@ -37,7 +38,7 @@ exports.CreateHarbor = async (req, res) => {
     throw error
   }
 }
-
+//UPDATE HARBOR
 exports.UpdateHarbor = async (req, res) => {
   try {
     const harbor = await Harbor.findByIdAndUpdate(
